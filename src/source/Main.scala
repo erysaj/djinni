@@ -36,6 +36,7 @@ object Main {
     var cppNnType: Option[String] = None
     var cppNnCheckExpression: Option[String] = None
     var cppUseFinalForRecord: Boolean = true
+    var cppGenerateDefaultConstructorForRecord: Boolean = false
     var javaOutFolder: Option[File] = None
     var javaPackage: Option[String] = None
     var javaCppException: Option[String] = None
@@ -136,6 +137,8 @@ object Main {
         .text("The expression to use for building non-nullable pointers")
       opt[Boolean]("cpp-use-final-for-record").valueName("<use-final-for-record>").foreach(x => cppUseFinalForRecord = x)
         .text("Whether generated C++ classes for records should be marked 'final' (default: true). ")
+      opt[Boolean]("cpp-generate-default-constructor-for-record").valueName("<generate-default-constructor-for-record>").foreach(x => cppGenerateDefaultConstructorForRecord = x)
+        .text("Whether generated C++ classes for records should have default constructor (default: false). ")
       note("")
       opt[File]("jni-out").valueName("<out-folder>").foreach(x => jniOutFolder = Some(x))
         .text("The folder for the JNI C++ output files (Generator disabled if unspecified).")
@@ -297,6 +300,7 @@ object Main {
       cppNnType,
       cppNnCheckExpression,
       cppUseFinalForRecord,
+      cppGenerateDefaultConstructorForRecord,
       jniOutFolder,
       jniHeaderOutFolder,
       jniIncludePrefix,

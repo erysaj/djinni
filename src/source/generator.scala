@@ -50,6 +50,7 @@ package object generatorTools {
                    cppNnType: Option[String],
                    cppNnCheckExpression: Option[String],
                    cppUseFinalForRecord: Boolean,
+                   cppGenerateDefaultConstructorForRecord: Boolean,
                    jniOutFolder: Option[File],
                    jniHeaderOutFolder: Option[File],
                    jniIncludePrefix: String,
