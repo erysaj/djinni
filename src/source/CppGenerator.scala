@@ -141,7 +141,8 @@ class CppGenerator(spec: Spec) extends Generator(spec) {
     refs.hpp.add("#include <utility>") // Add for std::move
 
     val self = marshal.typename(ident, r)
-    val (cppName, cppFinal) = if (r.ext.cpp) (ident.name + "_base", "") else (ident.name, " final")
+    val cppName = if (r.ext.cpp) (ident.name + "_base") else ident.name
+    val cppFinal = if (!r.ext.cpp && spec.cppUseFinalForRecord) " final" else ""
     val actualSelf = marshal.typename(cppName, r)
 
     // Requiring the extended class

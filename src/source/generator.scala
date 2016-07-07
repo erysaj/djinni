@@ -49,6 +49,7 @@ package object generatorTools {
                    cppNnHeader: Option[String],
                    cppNnType: Option[String],
                    cppNnCheckExpression: Option[String],
+                   cppUseFinalForRecord: Boolean,
                    jniOutFolder: Option[File],
                    jniHeaderOutFolder: Option[File],
                    jniIncludePrefix: String,
