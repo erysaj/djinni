@@ -195,6 +195,7 @@ object YamlGenerator {
       nested(td, "objc")("header").toString,
       nested(td, "objc")("boxed").toString,
       nested(td, "objc")("pointer").asInstanceOf[Boolean],
+      nested(td, "objc")("generic").asInstanceOf[Boolean],
       nested(td, "objc")("hash").toString),
     MExtern.Objcpp(
       nested(td, "objcpp")("translator").toString,

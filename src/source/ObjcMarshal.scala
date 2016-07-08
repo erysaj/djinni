@@ -94,6 +94,7 @@ class ObjcMarshal(spec: Spec) extends Marshal(spec) {
   def toObjcType(tm: MExpr): (String, Boolean) = toObjcType(tm, false)
   def toObjcType(tm: MExpr, needRef: Boolean): (String, Boolean) = {
     def args(tm: MExpr) = if (tm.args.isEmpty) "" else tm.args.map(toBoxedParamType).mkString("<", ", ", ">")
+    def argsParen(tm: MExpr) = if (tm.args.isEmpty) "" else tm.args.map(toBoxedParamType).mkString("(", ", ", ")")
     def f(tm: MExpr, needRef: Boolean): (String, Boolean) = {
       tm.base match {
         case MOptional =>
@@ -126,6 +127,7 @@ class ObjcMarshal(spec: Spec) extends Marshal(spec) {
             }
             case e: MExtern => e.body match {
               case i: Interface => if(i.ext.objc) (s"id<${e.objc.typename}>", false) else (e.objc.typename, true)
+              case r: Record => if (e.objc.generic) (e.objc.typename + argsParen(tm), e.objc.pointer) else if(needRef) (e.objc.boxed, true) else (e.objc.typename, e.objc.pointer)
               case _ => if(needRef) (e.objc.boxed, true) else (e.objc.typename, e.objc.pointer)
             }
             case p: MParam => throw new AssertionError("Parameter should not happen at Obj-C top level")
