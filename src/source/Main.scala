@@ -37,6 +37,7 @@ object Main {
     var cppNnCheckExpression: Option[String] = None
     var cppUseFinalForRecord: Boolean = true
     var cppGenerateDefaultConstructorForRecord: Boolean = false
+    var cppVisitorNameForRecord: String = ""
     var javaOutFolder: Option[File] = None
     var javaPackage: Option[String] = None
     var javaCppException: Option[String] = None
@@ -139,6 +140,8 @@ object Main {
         .text("Whether generated C++ classes for records should be marked 'final' (default: true). ")
       opt[Boolean]("cpp-generate-default-constructor-for-record").valueName("<generate-default-constructor-for-record>").foreach(x => cppGenerateDefaultConstructorForRecord = x)
         .text("Whether generated C++ classes for records should have default constructor (default: false). ")
+      opt[String]("cpp-visitor-name-for-record").valueName("<visitor-name-for-record>").foreach(x => cppVisitorNameForRecord = x)
+        .text("Visitor method name for C++ classes for records (default: empty). ")
       note("")
       opt[File]("jni-out").valueName("<out-folder>").foreach(x => jniOutFolder = Some(x))
         .text("The folder for the JNI C++ output files (Generator disabled if unspecified).")
@@ -301,6 +304,7 @@ object Main {
       cppNnCheckExpression,
       cppUseFinalForRecord,
       cppGenerateDefaultConstructorForRecord,
+      cppVisitorNameForRecord,
       jniOutFolder,
       jniHeaderOutFolder,
       jniIncludePrefix,

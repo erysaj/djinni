@@ -183,6 +183,29 @@ class CppGenerator(spec: Spec) extends Generator(spec) {
           w.wl(s"friend bool operator>=(const $actualSelf& lhs, const $actualSelf& rhs);")
         }
 
+        // Visitor.
+        if (spec.cppVisitorNameForRecord.nonEmpty) {
+          val visit = spec.cppVisitorNameForRecord
+          w.wl
+          w.wl(s"template<typename V>")
+          w.wl(s"void $visit(V &visitor)")
+          w.braced {
+            r.fields
+              .map(f => idCpp.field(f.ident))
+              .map(f => s"""visitor.accept("$f", $f);""")
+              .foreach(w.wl)
+          }
+          w.wl
+          w.wl(s"template<typename V>")
+          w.wl(s"void $visit(V &visitor) const")
+          w.braced {
+            r.fields
+              .map(f => idCpp.field(f.ident))
+              .map(f => s"""visitor.accept("$f", $f);""")
+              .foreach(w.wl)
+          }
+        }
+
         // Default constructor.
         if (spec.cppGenerateDefaultConstructorForRecord) {
           w.wl
