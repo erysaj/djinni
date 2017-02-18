@@ -267,7 +267,7 @@ When generating the interface for your project and wish to make it available to 
 in all of C++/Objective-C/Java you can tell Djinni to generate a special YAML file as part
 of the code generation process. This file then contains all the information Djinni requires
 to include your types in a different project. Instructing Djinni to create these YAML files
-is controlled by the follwoing arguments:
+is controlled by the following arguments:
 - `--yaml-out`: The output folder for YAML files (Generator disabled if unspecified).
 - `--yaml-out-file`: If specified all types are merged into a single YAML file instead of generating one file per type (relative to `--yaml-out`).
 - `--yaml-prefix`: The prefix to add to type names stored in YAML files (default: `""`).
@@ -428,7 +428,6 @@ Run `make test` to invoke the test suite, found in the test-suite subdirectory. 
 * [Slides](https://bit.ly/djinnitalk2) and [video](https://bit.ly/djinnivideo2) from the CppCon 2015 about Djinni implementatino techniques, and the addition of Python.
 * You can see a [CppCon 2014 talk](https://www.youtube.com/watch?v=5AZMEm3rZ2Y) by app developers at Dropbox about their cross-platform experiences.
 
-
 ## Authors
 - Kannan Goundan
 - Tony Grue
@@ -439,5 +438,5 @@ Run `make test` to invoke the test suite, found in the test-suite subdirectory. 
 - Andrew Twyman
 
 ## Contacts
-- Jacob Potter - `djinni@j4cbo.com`
 - Andrew Twyman - `atwyman@dropbox.com`
+- Jacob Potter - `djinni@j4cbo.com`
